@@ -35,7 +35,7 @@
 			</rectangle>
 			<image>
 				<reportElement x="10" y="11" width="109" height="132" uuid="634a7645-d829-4f40-86b7-fe7657945e1e"/>
-				<imageExpression><![CDATA["C:\\Users\\maula\\OneDrive\\Escritorio\\Proyecti\\PawsPlace\\src\\factura\\pet-shop.png"]]></imageExpression>
+				<imageExpression><![CDATA[".\\src\\factura\\pet-shop.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="108" y="10" width="203" height="20" uuid="c51e8a80-03be-49ab-846d-925ad067eacf"/>
@@ -283,7 +283,7 @@
 					<subreportParameterExpression><![CDATA[$P{VENTA}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\maula\\OneDrive\\Escritorio\\Proyecti\\PawsPlace\\src\\factura\\detalleFactur.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[".\\src\\factura\\detalleFactur.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

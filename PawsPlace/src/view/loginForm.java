@@ -4,7 +4,11 @@
  */
 package view;
 
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import model.usuarioDatos;
+import model.usuarioModel;
 
 /**
  *
@@ -15,6 +19,13 @@ public class loginForm extends javax.swing.JFrame {
     /**
      * Creates new form loginForm
      */
+    
+    //Modelo y metodos del login
+    usuarioModel model = new usuarioModel();
+    usuarioDatos datos = new usuarioDatos();
+    
+    //ArrayList para almacenar los datos de la consulta
+    ArrayList<Object[]> data = new ArrayList<>();
     public loginForm() {
         initComponents();
         setTitle("PawPlace");
@@ -37,10 +48,10 @@ public class loginForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -73,6 +84,11 @@ public class loginForm extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(194, 242, 252));
         jButton1.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -95,8 +111,8 @@ public class loginForm extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))))
+                            .addComponent(txtPassword)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -166,6 +182,38 @@ public class loginForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String pass = new String(txtPassword.getPassword());
+        
+        if(!txtUsername.getText().equals("") && !pass.equals("")){
+            
+            model.setOPCION(0);
+            model.setUSUARIO("");
+            model.setCEDULA(txtUsername.getText());
+            model.setCONTRASENA(pass);
+            model.setNOMBRE("");
+            model.setAPELLIDO1("");
+            model.setAPELLIDO2("");
+            model.setPK_TBL_PMK_CONTROL_USUARIO(0);
+            model.setID_ROLL(0);
+            
+            data = datos.obtenerDatos(model);
+            
+            if(!data.isEmpty()){
+                this.dispose();
+                
+                mainForm Home= new mainForm();
+                Home.setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Datos Incorrectos");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Debe ingresar sus datos");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,7 +260,7 @@ public class loginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

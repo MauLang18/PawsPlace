@@ -17,7 +17,7 @@ public class PawsPlace {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        mainForm lg = new mainForm();
+        loginForm lg = new loginForm();
         
         lg.setVisible(true);
     }

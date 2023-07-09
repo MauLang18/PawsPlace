@@ -4,6 +4,7 @@
  */
 package view;
 
+import constants.usuarioConst;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -200,6 +201,8 @@ public class loginForm extends javax.swing.JFrame {
             data = datos.obtenerDatos(model);
             
             if(!data.isEmpty()){
+                usuarioConst.iniciarSesion(data.get(0)[1].toString(), data.get(0)[3].toString(), data.get(0)[4].toString(), Integer.parseInt(data.get(0)[6].toString()));
+                
                 this.dispose();
                 
                 mainForm Home= new mainForm();

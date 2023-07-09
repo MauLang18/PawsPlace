@@ -4,6 +4,7 @@
  */
 package view;
 
+import constants.usuarioConst;
 import javax.swing.ImageIcon;
 
 /**
@@ -20,6 +21,24 @@ public class mainForm extends javax.swing.JFrame {
         setTitle("PawPlace");
         setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
+        
+        //Mostrar los datos del usuario
+        lblUsuario.setText(usuarioConst.nombre+" "+usuarioConst.apellido);
+        lblRol.setText(usuarioConst.obtenerRol());
+        
+        //Validar si es gerente o vendedor
+        if(usuarioConst.obtenerRol().equals("VENDEDOR")){
+            btnClientes.setEnabled(false);
+            btnUsuarios.setEnabled(false);
+            btnInventario.setEnabled(false);
+            btnVentas.setEnabled(true);
+        }
+        else{
+            btnClientes.setEnabled(true);
+            btnUsuarios.setEnabled(true);
+            btnInventario.setEnabled(true);
+            btnVentas.setEnabled(true);
+        }
     }
 
     /**
@@ -35,6 +54,8 @@ public class mainForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        lblRol = new javax.swing.JLabel();
         pnlEscritorio = new javax.swing.JDesktopPane();
         btnInventario = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
@@ -45,8 +66,9 @@ public class mainForm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        btnSalir = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        Menu = new javax.swing.JMenu();
+        btnSalir = new javax.swing.JMenuItem();
+        btnCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -62,21 +84,36 @@ public class mainForm extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pet-shop.png"))); // NOI18N
 
+        lblUsuario.setText("jLabel8");
+
+        lblRol.setText("jLabel9");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jLabel3)
-                .addContainerGap(274, Short.MAX_VALUE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblUsuario)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(64, 64, 64)
+                            .addComponent(jLabel3))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(141, 141, 141)
+                            .addComponent(lblRol))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
+                .addComponent(lblUsuario)
+                .addGap(37, 37, 37)
+                .addComponent(lblRol)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
@@ -203,19 +240,29 @@ public class mainForm extends javax.swing.JFrame {
 
         jMenuBar1.setBorderPainted(false);
 
-        btnSalir.setText("Salir");
+        Menu.setText("Salir");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/shutdown.png"))); // NOI18N
-        jMenuItem1.setText("Salir");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/shutdown.png"))); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
-        btnSalir.add(jMenuItem1);
+        Menu.add(btnSalir);
 
-        jMenuBar1.add(btnSalir);
+        btnCerrarSesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logout.png"))); // NOI18N
+        btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+        Menu.add(btnCerrarSesion);
+
+        jMenuBar1.add(Menu);
 
         setJMenuBar(jMenuBar1);
 
@@ -288,10 +335,21 @@ public class mainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     //Boton para cerrar el sistema
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         //Funcion para cerrar el programa
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        //Funcion para cerrar la sesion
+        this.dispose();
+        
+        loginForm lg = new loginForm();
+        lg.setVisible(true);
+        
+        //Funcion para borrar los datos de la sesion
+        usuarioConst.cerrarSesion();
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,9 +387,11 @@ public class mainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Menu;
+    private javax.swing.JMenuItem btnCerrarSesion;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnInventario;
-    private javax.swing.JMenu btnSalir;
+    private javax.swing.JMenuItem btnSalir;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVentas;
     private javax.swing.JLabel jLabel1;
@@ -342,8 +402,9 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblRol;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JDesktopPane pnlEscritorio;
     // End of variables declaration//GEN-END:variables
 }

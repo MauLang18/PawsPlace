@@ -4,11 +4,9 @@
  */
 package view;
 
+import constants.usuarioConst;
 import java.awt.Component;
 import java.awt.Frame;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -46,7 +44,7 @@ public class CategoriaForm extends javax.swing.JDialog {
         //Asignando valores a los atributos
         model.setOPCION(0);
         model.setPK_TBL_PMK_CATEGORIA(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
         model.setCATEGORIA("");
 
         //Guardando los datos en la arraylist
@@ -253,7 +251,7 @@ public class CategoriaForm extends javax.swing.JDialog {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         //Atributos
         model.setOPCION(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
 
         //Condicional para validar si el campo id tiene un valor
         if (!txtId.getText().equals("")) {
@@ -270,7 +268,7 @@ public class CategoriaForm extends javax.swing.JDialog {
             limpiar();
 
             model1.setOPCION(0);
-            model1.setUSUARIO("MAURICE.LANG");
+            model1.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model1.setPK_TBL_PMK_CATEGORIA(0);
             model1.setCATEGORIA("");
 
@@ -294,7 +292,7 @@ public class CategoriaForm extends javax.swing.JDialog {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         //Atributos
         model.setOPCION(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
 
         //Condicional para validar si el campo id tiene un valor
         if (!txtId.getText().equals("")) {
@@ -311,7 +309,7 @@ public class CategoriaForm extends javax.swing.JDialog {
             limpiar();
 
             model1.setOPCION(0);
-            model1.setUSUARIO("MAURICE.LANG");
+            model1.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model1.setPK_TBL_PMK_CATEGORIA(0);
             model1.setCATEGORIA("");
 
@@ -335,7 +333,7 @@ public class CategoriaForm extends javax.swing.JDialog {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         //Atributos
         model.setOPCION(1);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
 
         //Condicional para validar si el campo id tiene un valor
         if (!txtId.getText().equals("")) {
@@ -352,7 +350,7 @@ public class CategoriaForm extends javax.swing.JDialog {
             limpiar();
 
             model1.setOPCION(0);
-            model1.setUSUARIO("MAURICE.LANG");
+            model1.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model1.setPK_TBL_PMK_CATEGORIA(0);
             model1.setCATEGORIA("");
 
@@ -375,7 +373,7 @@ public class CategoriaForm extends javax.swing.JDialog {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         model.setOPCION(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
 
         //JOptionPane para saber el tipo de dato que desea buscar
         Object buscar = JOptionPane.showInputDialog(null, "Seleccione una Opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Seleccione", "Id", "Categoria"}, "Seleccione");

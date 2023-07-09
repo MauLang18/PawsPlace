@@ -4,14 +4,13 @@
  */
 package view;
 
+import constants.usuarioConst;
 import java.awt.Component;
 import java.awt.Frame;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import model.Categoria;
 import model.categoriaDatos;
 import model.categoriaModel;
 import model.inventarioDatos;
@@ -55,7 +54,7 @@ public class ProductoForm extends javax.swing.JDialog {
         //Asignando valores a los atributos
         model.setOPCION(0);
         model.setPK_TBL_PMK_CATEGORIA(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
         model.setCATEGORIA("");
 
         //Guardando los datos en la arraylist
@@ -193,7 +192,7 @@ public class ProductoForm extends javax.swing.JDialog {
             //Asignando valores a los atributos
             model.setOPCION(0);
             model.setPK_TBL_PMK_CATEGORIA(0);
-            model.setUSUARIO("MAURICE.LANG");
+            model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model.setCATEGORIA(valor);
 
             //Guardando los datos en la arraylist
@@ -203,7 +202,7 @@ public class ProductoForm extends javax.swing.JDialog {
 
             model1.setOPCION(0);
             model1.setPK_TBL_PMK_INVENTARIO(0);
-            model1.setUSUARIO("MAURICE.LANG");
+            model1.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model1.setCANTIDAD(0);
             model1.setCODIGO("");
             model1.setNOMBRE("");
@@ -230,7 +229,7 @@ public class ProductoForm extends javax.swing.JDialog {
             //Asignando valores a los atributos
             model.setOPCION(0);
             model.setPK_TBL_PMK_CATEGORIA(0);
-            model.setUSUARIO("MAURICE.LANG");
+            model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model.setCATEGORIA(valor);
 
             //Guardando los datos en la arraylist
@@ -240,7 +239,7 @@ public class ProductoForm extends javax.swing.JDialog {
 
             model1.setOPCION(0);
             model1.setPK_TBL_PMK_INVENTARIO(0);
-            model1.setUSUARIO("MAURICE.LANG");
+            model1.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model1.setCANTIDAD(0);
             model1.setCODIGO("");
             model1.setNOMBRE(valor1);

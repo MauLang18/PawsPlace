@@ -4,6 +4,7 @@
  */
 package view;
 
+import constants.usuarioConst;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -47,7 +48,7 @@ public class moduloInventario extends javax.swing.JInternalFrame {
         //Asignando valores a los atributos
         model.setOPCION(0);
         model.setPK_TBL_PMK_INVENTARIO(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
         model.setCODIGO("");
         model.setNOMBRE("");
         model.setTIPO_ANIMAL("");
@@ -290,7 +291,7 @@ public class moduloInventario extends javax.swing.JInternalFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         //Atributos
         model.setOPCION(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
 
         //Condicional para validar si el campo id tiene un valor
         if (!Id.equals("")) {
@@ -312,7 +313,7 @@ public class moduloInventario extends javax.swing.JInternalFrame {
             limpiar();
 
             model1.setOPCION(0);
-            model1.setUSUARIO("MAURICE.LANG");
+            model1.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model1.setPK_TBL_PMK_INVENTARIO(0);
             model1.setCODIGO("");
             model1.setNOMBRE("");
@@ -364,7 +365,7 @@ public class moduloInventario extends javax.swing.JInternalFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         //Atributos
         model.setOPCION(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
 
         //Condicional para validar si el campo id tiene un valor
         if (!Id.equals("")) {
@@ -374,7 +375,7 @@ public class moduloInventario extends javax.swing.JInternalFrame {
         }
         
         model2.setOPCION(0);
-        model2.setUSUARIO("MAURICE.LANG");
+        model2.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
         model2.setPK_TBL_PMK_CATEGORIA(0);
         model2.setCATEGORIA(txtCategoria.getText());
 
@@ -393,7 +394,7 @@ public class moduloInventario extends javax.swing.JInternalFrame {
             limpiar();
 
             model1.setOPCION(0);
-            model1.setUSUARIO("MAURICE.LANG");
+            model1.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model1.setPK_TBL_PMK_INVENTARIO(0);
             model1.setCODIGO("");
             model1.setNOMBRE("");
@@ -422,7 +423,7 @@ public class moduloInventario extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         //Atributos
         model.setOPCION(1);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
 
         //Condicional para validar si el campo id tiene un valor
         if (!Id.equals("")) {
@@ -444,7 +445,7 @@ public class moduloInventario extends javax.swing.JInternalFrame {
             limpiar();
 
             model1.setOPCION(0);
-            model1.setUSUARIO("MAURICE.LANG");
+            model1.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model1.setPK_TBL_PMK_INVENTARIO(0);
             model1.setCODIGO("");
             model1.setNOMBRE("");
@@ -472,7 +473,7 @@ public class moduloInventario extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         model.setOPCION(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
 
         //JOptionPane para saber el tipo de dato que desea buscar
         Object buscar = JOptionPane.showInputDialog(null, "Seleccione una Opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Seleccione", "Id", "Codigo", "Nombre", "Tipo Animal", "Precio", "Cantidad"}, "Seleccione");

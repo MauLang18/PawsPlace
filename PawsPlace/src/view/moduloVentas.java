@@ -4,6 +4,7 @@
  */
 package view;
 
+import constants.usuarioConst;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -406,7 +407,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
         //Atributos
         model3.setOPCION(0);
-        model3.setUSUARIO("MAURICE.LANG");
+        model3.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
         model3.setPK_TBL_PMK_VENTA(0);
 
         model3.setID_CLIENTE(Integer.parseInt(idCliente));
@@ -418,7 +419,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Se ha creado la venta con exito");
 
             model5.setOPCION(1);
-            model5.setUSUARIO("MAURICE.LANG");
+            model5.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model5.setPK_TBL_PMK_VENTA(0);
             model5.setID_CLIENTE(0);
             model5.setFECHA("");
@@ -454,7 +455,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
 
                 //Se guardan los datos en el modelo para despues eliminarlo del carrito
                 model2.setOPCION(1);
-                model2.setUSUARIO("MAURICE.LANG");
+                model2.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
                 model2.setPK_TBL_PMK_CARRITO(Integer.parseInt(datosFila.get(0).toString()));
                 model2.setID_VENTA(Integer.parseInt(datosFila.get(1).toString()));
                 model2.setID_PRODUCTO(0);
@@ -467,7 +468,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
                     limpiar();
 
                     model4.setOPCION(0);
-                    model4.setUSUARIO("MAURICE.LANG");
+                    model4.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
                     model4.setPK_TBL_PMK_CARRITO(0);
                     model4.setID_VENTA(Integer.parseInt(datosFila.get(1).toString()));
                     model4.setID_PRODUCTO(0);
@@ -487,7 +488,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
                     tblCarrito.setModel(tableModel);
 
                     model7.setOPCION(0);
-                    model7.setUSUARIO("MAURICE.LANG");
+                    model7.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
                     model7.setCANTIDAD(0);
                     model7.setCODIGO(datosFila.get(2).toString());
                     model7.setID_CATEGORIA(0);
@@ -500,7 +501,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
                     CantidadLogic compra = new CantidadLogic(Integer.parseInt(data1.get(0)[5].toString()), Integer.parseInt(datosFila.get(5).toString()));
 
                     model.setOPCION(0);
-                    model.setUSUARIO("MAURICE.LANG");
+                    model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
                     model.setCANTIDAD(compra.cantidadNueva());
                     if (!productos.isEmpty()) {
                         model.setPK_TBL_PMK_INVENTARIO(Integer.parseInt(productos.get(0).toString()));
@@ -542,7 +543,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
             SumaLogic suma = new SumaLogic(Double.parseDouble(precio), Integer.parseInt(txtCantidad.getText()));
 
             model2.setOPCION(0);
-            model2.setUSUARIO("MAURICE.LANG");
+            model2.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model2.setPK_TBL_PMK_CARRITO(0);
             model2.setID_VENTA(Integer.parseInt(idVenta));
             model2.setID_PRODUCTO(Integer.parseInt(idProducto));
@@ -555,7 +556,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
                 limpiar();
 
                 model4.setOPCION(0);
-                model4.setUSUARIO("MAURICE.LANG");
+                model4.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
                 model4.setPK_TBL_PMK_CARRITO(0);
                 model4.setID_VENTA(Integer.parseInt(idVenta));
                 model4.setID_PRODUCTO(0);
@@ -581,7 +582,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
                 lblTotal.setText("TOTAL: ¢" + suma1.totalConIVA());
 
                 model.setOPCION(0);
-                model.setUSUARIO("MAURICE.LANG");
+                model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
                 model.setCANTIDAD(compra.cantidadSobrante());
                 if (!productos.isEmpty()) {
                     model.setPK_TBL_PMK_INVENTARIO(Integer.parseInt(productos.get(0).toString()));
@@ -613,7 +614,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
             //Asignando valores a los atributos
             model.setOPCION(0);
             model.setPK_TBL_PMK_INVENTARIO(0);
-            model.setUSUARIO("MAURICE.LANG");
+            model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model.setCANTIDAD(0);
             model.setCODIGO(valor);
             model.setNOMBRE("");
@@ -656,7 +657,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
                 }
 
                 model6.setOPCION(0);
-                model6.setUSUARIO("MAURICE.LANG");
+                model6.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
                 model6.setPK_TBL_PMK_CATEGORIA(0);
                 model6.setCATEGORIA(data.get(0)[6].toString());
 
@@ -713,7 +714,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
             //Asignando valores a los atributos
             model1.setOPCION(0);
             model1.setPK_TBL_PMK_CLIENTE(0);
-            model1.setUSUARIO("MAURICE.LANG");
+            model1.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
             model1.setCEDULA(valor);
             model1.setNOMBRE("");
             model1.setAPELLIDO1("");
@@ -759,7 +760,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
 
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
         model5.setOPCION(0);
-        model5.setUSUARIO("MAURICE.LANG");
+        model5.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
         model5.setPK_TBL_PMK_VENTA(Integer.parseInt(idVenta));
         model5.setFECHA(FechaLogic.obtenerFechaActual());
         model5.setID_CLIENTE(Integer.parseInt(idCliente));

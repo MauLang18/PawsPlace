@@ -4,6 +4,7 @@
  */
 package view;
 
+import constants.usuarioConst;
 import java.awt.Component;
 import java.awt.Frame;
 import java.util.ArrayList;
@@ -228,7 +229,7 @@ public class ClienteForm extends javax.swing.JDialog {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         //Atributos
         model.setOPCION(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
         model.setPK_TBL_PMK_CLIENTE(0);
 
         model.setCEDULA(txtCedula.getText());
@@ -262,7 +263,7 @@ public class ClienteForm extends javax.swing.JDialog {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         model.setOPCION(0);
-        model.setUSUARIO("MAURICE.LANG");
+        model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
 
         //JOptionPane para saber el tipo de dato que desea buscar
         Object buscar = JOptionPane.showInputDialog(null, "Seleccione una Opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Seleccione", "Cedula", "Nombre", "Primer Apellido"}, "Seleccione");

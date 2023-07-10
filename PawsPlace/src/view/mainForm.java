@@ -5,7 +5,14 @@
 package view;
 
 import constants.usuarioConst;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import model.parametroDatos;
+import model.parametroModel;
 
 /**
  *
@@ -16,25 +23,58 @@ public class mainForm extends javax.swing.JFrame {
     /**
      * Creates new form mainForm
      */
+    parametroModel param = new parametroModel();
+    parametroDatos params = new parametroDatos();
+
+    ArrayList<parametroModel> list = new ArrayList<>();
+
     public mainForm() {
         initComponents();
-        setTitle("PawPlace");
-        setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
-        
+        list = params.listar_parametro(param);
+
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                Object fila[] = new Object[5];
+                param = list.get(i);
+                try {
+                    byte[] bi = param.getLOGO();
+                    BufferedImage image = null;
+                    InputStream in = new ByteArrayInputStream(bi);
+                    image = ImageIO.read(in);
+                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(128, 128, 0));
+                    lblLogo.setIcon(imgi);
+                    lblEmpresa.setText(param.getEMPRESA());
+                    setTitle(param.getEMPRESA());
+                    setLocationRelativeTo(null);
+                    setIconImage(imgi.getImage());
+                } catch (Exception ex) {
+                    lblLogo.setIcon(new ImageIcon(getClass().getResource("/resources/pet-shop.png")));
+                    lblEmpresa.setText("PetMarket");
+                    setTitle("PetMarket");
+                    setLocationRelativeTo(null);
+                    setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
+                }
+            }
+        } else {
+            lblLogo.setIcon(new ImageIcon(getClass().getResource("/resources/pet-shop.png")));
+            lblEmpresa.setText("PetMarket");
+            setTitle("PetMarket");
+            setLocationRelativeTo(null);
+            setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
+        }
+
         //Mostrar los datos del usuario
-        lblUsuario.setText(usuarioConst.nombre+" "+usuarioConst.apellido);
+        lblUsuario.setText(usuarioConst.nombre + " " + usuarioConst.apellido);
         lblRol.setText(usuarioConst.obtenerRol());
-        
+
         //Validar si es gerente o vendedor
-        if(usuarioConst.obtenerRol().equals("VENDEDOR")){
+        if (usuarioConst.obtenerRol().equals("VENDEDOR")) {
             Menu2.setVisible(false);
             btnClientes.setEnabled(false);
             btnUsuarios.setEnabled(false);
             btnInventario.setEnabled(false);
             btnVentas.setEnabled(true);
-        }
-        else{
+        } else {
             Menu2.setVisible(true);
             btnClientes.setEnabled(true);
             btnUsuarios.setEnabled(true);
@@ -53,9 +93,9 @@ public class mainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblEmpresa = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblRol = new javax.swing.JLabel();
         pnlEscritorio = new javax.swing.JDesktopPane();
@@ -79,14 +119,14 @@ public class mainForm extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(73, 165, 164));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("PawPlace");
+        lblEmpresa.setBackground(new java.awt.Color(255, 255, 255));
+        lblEmpresa.setFont(new java.awt.Font("Lucida Sans", 0, 48)); // NOI18N
+        lblEmpresa.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmpresa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEmpresa.setText("PawPlace");
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pet-shop.png"))); // NOI18N
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pet-shop.png"))); // NOI18N
 
         lblUsuario.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
         lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -100,8 +140,8 @@ public class mainForm extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jLabel3)
@@ -119,9 +159,9 @@ public class mainForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(lblLogo)
                 .addGap(90, 90, 90)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(159, 159, 159))
         );
 
@@ -307,10 +347,10 @@ public class mainForm extends javax.swing.JFrame {
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
         //Crea una instancia de la vista
         moduloControUsuario af = new moduloControUsuario();
-        
+
         //Agrega el modulo al desktop panel
         pnlEscritorio.add(af);
-        
+
         //Muestra la instancia
         af.show();
     }//GEN-LAST:event_btnUsuariosActionPerformed
@@ -319,10 +359,10 @@ public class mainForm extends javax.swing.JFrame {
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
         //Crea una instancia de la vista
         moduloVentas af = new moduloVentas();
-        
+
         //Agrega el modulo al desktop panel
         pnlEscritorio.add(af);
-        
+
         //Muestra la instancia
         af.show();
     }//GEN-LAST:event_btnVentasActionPerformed
@@ -331,22 +371,22 @@ public class mainForm extends javax.swing.JFrame {
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
         //Crea una instancia de la vista
         moduloInventario af = new moduloInventario();
-        
+
         //Agrega el modulo al desktop panel
         pnlEscritorio.add(af);
-        
+
         //Muestra la instancia
         af.show();
     }//GEN-LAST:event_btnInventarioActionPerformed
 
     //Boton del modulo de cliente
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-       //Crea una instancia de la vista
+        //Crea una instancia de la vista
         moduloCliente af = new moduloCliente();
-        
+
         //Agrega el modulo al desktop panel
         pnlEscritorio.add(af);
-        
+
         //Muestra la instancia
         af.show();
     }//GEN-LAST:event_btnClientesActionPerformed
@@ -360,10 +400,10 @@ public class mainForm extends javax.swing.JFrame {
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         //Funcion para cerrar la sesion
         this.dispose();
-        
+
         loginForm lg = new loginForm();
         lg.setVisible(true);
-        
+
         //Funcion para borrar los datos de la sesion
         usuarioConst.cerrarSesion();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
@@ -423,14 +463,14 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVentas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblEmpresa;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblRol;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JDesktopPane pnlEscritorio;

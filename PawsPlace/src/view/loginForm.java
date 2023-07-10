@@ -67,6 +67,12 @@ public class loginForm extends javax.swing.JFrame {
                     setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
                 }
             }
+        }else {
+            lblLogo.setIcon(new ImageIcon(getClass().getResource("/resources/pet-shop.png")));
+            lblEmpresa.setText("PetMarket");
+            setTitle("PetMarket");
+            setLocationRelativeTo(null);
+            setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
         }
     }
 

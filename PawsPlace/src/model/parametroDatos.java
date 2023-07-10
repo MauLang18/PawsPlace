@@ -104,35 +104,49 @@ public class parametroDatos extends conexion{
         return data;
     }
     
-    /*public ArrayList<ProductoVO> Listar_ProductoVO(){
-        ArrayList<ProductoVO> list = new ArrayList<ProductoVO>();
-        Conectar conec = new Conectar();
-        String sql = "SELECT * FROM producto;";
+    public ArrayList<parametroModel> listar_parametro(parametroModel ba){
+        ArrayList<parametroModel> list = new ArrayList<parametroModel>();
+        String sql = "EXEC PAWPLACE.PA_CON_TBL_PMK_PARAMETRO ?,?,?,?";
         ResultSet rs = null;
+        conexion conn = new conexion();
+        Connection con = conn.getConexion();
         PreparedStatement ps = null;
         try{
-            ps = conec.getConnection().prepareStatement(sql);
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ba.getOPCION());
+            ps.setString(2, ba.getUSUARIO());
+            ps.setInt(3, 0);
+            ps.setInt(4, ba.getPK_TBL_PMK_PARAMETRO());
             rs = ps.executeQuery();
             while(rs.next()){
-                ProductoVO vo = new ProductoVO();
-                vo.setIdproducto(rs.getInt(1));
-                vo.setNombre(rs.getString(2));
-                vo.setPrecio(rs.getDouble(3));
-                vo.setMarca(rs.getString(4));
-                vo.setFoto(rs.getBytes(5));
+                parametroModel vo = new parametroModel();
+                vo.setPK_TBL_PMK_PARAMETRO(rs.getInt(1));
+                vo.setCEDULA_JURIDICA(rs.getString(2));
+                vo.setEMPRESA(rs.getString(3));
+                vo.setTELEFONO(rs.getString(4));
+                vo.setCORREO(rs.getString(5));
+                vo.setWEB(rs.getString(6));
+                vo.setDIRECCION(rs.getString(7));
+                vo.setDESCRIPCION(rs.getString(8));
+                vo.setTIPO_TIENDA(rs.getString(9));
+                vo.setLOGO(rs.getBytes(10));
                 list.add(vo);
             }
-        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
-        }finally{
-            try{
-                ps.close();
-                rs.close();
-                conec.desconectar();
-            }catch(Exception ex){}
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
+        
         return list;
-    }*/
+    }
 }

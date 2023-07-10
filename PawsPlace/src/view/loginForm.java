@@ -10,6 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,27 +37,37 @@ public class loginForm extends javax.swing.JFrame {
 
     //ArrayList para almacenar los datos de la consulta
     ArrayList<Object[]> data = new ArrayList<>();
-    ArrayList<Object[]> parametro = new ArrayList<>();
+    ArrayList<parametroModel> list = new ArrayList<>();
 
     public loginForm() {
         initComponents();
 
-        parametro = params.obtenerDatos(param);
-        /*try {
-            byte[] bi = Byte.parseByte(parametro.get(0)[9].toString());
-            BufferedImage image = null;
-            InputStream in = new ByteArrayInputStream(bi);
-            image = ImageIO.read(in);
-            ImageIcon imgi = new ImageIcon(image.getScaledInstance(60, 60, 0));
-            fila[4] = new JLabel(imgi);
+        list = params.listar_parametro(param);
 
-        } catch (Exception ex) {
-            fila[4] = new JLabel("No imagen");
-        }*/
-
-        setTitle("PawPlace");
-        setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                Object fila[] = new Object[5];
+                param = list.get(i);
+                try {
+                    byte[] bi = param.getLOGO();
+                    BufferedImage image = null;
+                    InputStream in = new ByteArrayInputStream(bi);
+                    image = ImageIO.read(in);
+                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(128, 128, 0));
+                    lblLogo.setIcon(imgi);
+                    lblEmpresa.setText(param.getEMPRESA());
+                    setTitle(param.getEMPRESA());
+                    setLocationRelativeTo(null);
+                    setIconImage(imgi.getImage());
+                } catch (Exception ex) {
+                    lblLogo.setIcon(new ImageIcon(getClass().getResource("/resources/pet-shop.png")));
+                    lblEmpresa.setText("PetMarket");
+                    setTitle("PetMarket");
+                    setLocationRelativeTo(null);
+                    setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
+                }
+            }
+        }
     }
 
     /**
@@ -79,7 +90,7 @@ public class loginForm extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         lblLogo = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblEmpresa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 515));
@@ -166,11 +177,11 @@ public class loginForm extends javax.swing.JFrame {
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/user.png"))); // NOI18N
 
-        jLabel3.setBackground(new java.awt.Color(194, 242, 252));
-        jLabel3.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(194, 242, 252));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("PawsPlace");
+        lblEmpresa.setBackground(new java.awt.Color(194, 242, 252));
+        lblEmpresa.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
+        lblEmpresa.setForeground(new java.awt.Color(194, 242, 252));
+        lblEmpresa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEmpresa.setText("PawsPlace");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,7 +192,7 @@ public class loginForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)))
+                    .addComponent(lblEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +201,7 @@ public class loginForm extends javax.swing.JFrame {
                 .addGap(134, 134, 134)
                 .addComponent(lblLogo)
                 .addGap(32, 32, 32)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -278,13 +289,13 @@ public class loginForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblEmpresa;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;

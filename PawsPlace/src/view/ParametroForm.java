@@ -136,7 +136,7 @@ public class ParametroForm extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         model.setOPCION(0);
         model.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
-        model.setPK_TBL_PMK_PARAMETRO(0);
+        model.setPK_TBL_PMK_PARAMETRO(1);
         model.setCEDULA_JURIDICA(txtCedulaJuridica.getText());
         model.setEMPRESA(txtEmpresa.getText());
         model.setTELEFONO(txtTelefono.getText());

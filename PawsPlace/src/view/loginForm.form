@@ -55,7 +55,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblLogo" max="32767" attributes="0"/>
-                      <Component id="jLabel3" pref="378" max="32767" attributes="0"/>
+                      <Component id="lblEmpresa" pref="378" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -67,7 +67,7 @@
                   <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                   <Component id="lblLogo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="lblEmpresa" min="-2" pref="52" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -213,7 +213,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lblEmpresa">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fc" green="f2" red="c2" type="rgb"/>

@@ -28,12 +28,14 @@ public class mainForm extends javax.swing.JFrame {
         
         //Validar si es gerente o vendedor
         if(usuarioConst.obtenerRol().equals("VENDEDOR")){
+            Menu2.setVisible(false);
             btnClientes.setEnabled(false);
             btnUsuarios.setEnabled(false);
             btnInventario.setEnabled(false);
             btnVentas.setEnabled(true);
         }
         else{
+            Menu2.setVisible(true);
             btnClientes.setEnabled(true);
             btnUsuarios.setEnabled(true);
             btnInventario.setEnabled(true);
@@ -69,6 +71,8 @@ public class mainForm extends javax.swing.JFrame {
         Menu = new javax.swing.JMenu();
         btnSalir = new javax.swing.JMenuItem();
         btnCerrarSesion = new javax.swing.JMenuItem();
+        Menu2 = new javax.swing.JMenu();
+        btnParametros = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -263,6 +267,20 @@ public class mainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(Menu);
 
+        Menu2.setText("Configuracion");
+
+        btnParametros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adjust.png"))); // NOI18N
+        btnParametros.setText("Parametros");
+        btnParametros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnParametrosActionPerformed(evt);
+            }
+        });
+        Menu2.add(btnParametros);
+
+        jMenuBar1.add(Menu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -350,6 +368,15 @@ public class mainForm extends javax.swing.JFrame {
         usuarioConst.cerrarSesion();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
+    private void btnParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParametrosActionPerformed
+        //Creamos una instancia del modal
+        ParametroForm fm = new ParametroForm(this, true);
+        //Colocamos el modal en media pantalla
+        fm.setLocationRelativeTo(null);
+        //Mostramos el modal
+        fm.setVisible(true);
+    }//GEN-LAST:event_btnParametrosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -387,9 +414,11 @@ public class mainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Menu;
+    private javax.swing.JMenu Menu2;
     private javax.swing.JMenuItem btnCerrarSesion;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnInventario;
+    private javax.swing.JMenuItem btnParametros;
     private javax.swing.JMenuItem btnSalir;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVentas;

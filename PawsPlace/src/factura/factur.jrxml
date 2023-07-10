@@ -22,6 +22,14 @@
 	<field name="CANTIDAD" class="java.lang.Integer"/>
 	<field name="SUBTOTAL" class="java.math.BigDecimal"/>
 	<field name="TOTAL" class="java.math.BigDecimal"/>
+	<field name="CEDULA_JURIDICA" class="java.lang.String"/>
+	<field name="EMPRESA" class="java.lang.String"/>
+	<field name="TELEFONO" class="java.lang.String"/>
+	<field name="WEB" class="java.lang.String"/>
+	<field name="DESCRIPCION" class="java.lang.String"/>
+	<field name="DIRECCION" class="java.lang.String"/>
+	<field name="TIPO_TIENDA" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -35,41 +43,22 @@
 			</rectangle>
 			<image>
 				<reportElement x="10" y="11" width="109" height="132" uuid="634a7645-d829-4f40-86b7-fe7657945e1e"/>
-				<imageExpression><![CDATA[".\\src\\factura\\pet-shop.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{LOGO}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="108" y="10" width="203" height="20" uuid="c51e8a80-03be-49ab-846d-925ad067eacf"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14"/>
-				</textElement>
-				<text><![CDATA[TIENDA DE MASCOTAS]]></text>
+				<reportElement x="119" y="90" width="192" height="20" uuid="53bf4d00-1c4f-40f1-867d-5669156ee822"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ Correo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="108" y="90" width="203" height="20" uuid="53bf4d00-1c4f-40f1-867d-5669156ee822"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Correo: prueba@pawsplace.com]]></text>
+				<reportElement x="119" y="110" width="192" height="20" uuid="41d39283-aeb3-4167-ac37-3f5f9da6bcea"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ Web: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="108" y="30" width="203" height="20" uuid="8209255a-a03c-4f36-a93c-85082dca279e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[PAWSPLACE]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="108" y="110" width="203" height="20" uuid="41d39283-aeb3-4167-ac37-3f5f9da6bcea"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Web: pawsplace.com]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="108" y="70" width="203" height="20" uuid="0b5dfade-9550-4e2b-867b-8fe46ecdf015"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Telefono: (506) 9999-9999]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="108" y="50" width="203" height="20" uuid="56c5f827-bde6-418a-ab08-4f3367cffb6d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Venta de articulos para mascotas]]></text>
+				<reportElement x="119" y="70" width="192" height="20" uuid="0b5dfade-9550-4e2b-867b-8fe46ecdf015"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ Telefono: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="323" y="10" width="232" height="40" uuid="bf0898c2-1247-4df2-ac05-c2da40e86194"/>
@@ -80,10 +69,10 @@
 			</staticText>
 			<staticText>
 				<reportElement x="323" y="70" width="232" height="20" uuid="83f26503-75f2-4f9b-aed7-b25c8ef95fe2"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[RUC: 3-101-999999]]></text>
+				<text><![CDATA[ CEDULA JURIDICA:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="323" y="50" width="232" height="20" uuid="903958a6-0cf0-4325-b3e6-561eb3e1dcac"/>
@@ -216,6 +205,47 @@
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="70" width="131" height="20" uuid="262d937f-2ee3-4172-bfbb-014a0d55efa5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="110" width="157" height="20" uuid="d2e9402a-54a5-4178-8c44-78abbc4648d9"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{WEB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="164" y="90" width="147" height="20" uuid="2222a6b0-ab87-41a8-b5de-0b9670652ef1"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CORREO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="70" width="115" height="20" uuid="8bba31af-2a00-41fa-9ae8-7d3ff5c38473"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CEDULA_JURIDICA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="30" width="192" height="20" uuid="660700b3-e4bd-44a7-a928-0fc84ded90cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMPRESA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="10" width="192" height="20" uuid="25c17033-b438-45dc-828e-18d1c8d193ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_TIENDA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="50" width="192" height="20" uuid="fcddef83-475e-49e2-adb9-671f5b010f0a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DESCRIPCION}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

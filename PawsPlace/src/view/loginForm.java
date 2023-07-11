@@ -4,6 +4,7 @@
  */
 package view;
 
+import constants.paramsConst;
 import constants.usuarioConst;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;

@@ -6,6 +6,9 @@
 	<parameter name="VENTA" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="IMAGEN" class="java.awt.Image">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[EXEC PAWPLACE.PA_CON_TBL_PMK_CARRITO 1,'MAURICE.LANG',0,0,$P{VENTA},0,0,0.0]]>
 	</queryString>
@@ -24,6 +27,7 @@
 	<field name="TOTAL" class="java.math.BigDecimal"/>
 	<field name="CEDULA_JURIDICA" class="java.lang.String"/>
 	<field name="EMPRESA" class="java.lang.String"/>
+	<field name="CORREO_EMPRESA" class="java.lang.String"/>
 	<field name="TELEFONO" class="java.lang.String"/>
 	<field name="WEB" class="java.lang.String"/>
 	<field name="DESCRIPCION" class="java.lang.String"/>
@@ -43,7 +47,7 @@
 			</rectangle>
 			<image>
 				<reportElement x="10" y="11" width="109" height="132" uuid="634a7645-d829-4f40-86b7-fe7657945e1e"/>
-				<imageExpression><![CDATA[$F{LOGO}]]></imageExpression>
+				<imageExpression><![CDATA[$P{IMAGEN}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="119" y="90" width="192" height="20" uuid="53bf4d00-1c4f-40f1-867d-5669156ee822"/>
@@ -217,12 +221,7 @@
 				<textFieldExpression><![CDATA[$F{WEB}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="164" y="90" width="147" height="20" uuid="2222a6b0-ab87-41a8-b5de-0b9670652ef1"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{CORREO}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="439" y="70" width="115" height="20" uuid="8bba31af-2a00-41fa-9ae8-7d3ff5c38473"/>
+				<reportElement x="447" y="70" width="107" height="20" uuid="8bba31af-2a00-41fa-9ae8-7d3ff5c38473"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -246,6 +245,11 @@
 				<reportElement x="119" y="50" width="192" height="20" uuid="fcddef83-475e-49e2-adb9-671f5b010f0a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="165" y="90" width="146" height="20" uuid="d578d01e-9b5a-4f43-8fa5-c9f881e72603"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CORREO_EMPRESA}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

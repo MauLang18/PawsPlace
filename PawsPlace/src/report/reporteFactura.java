@@ -4,6 +4,7 @@
  */
 package report;
 
+import java.awt.Image;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -24,7 +25,7 @@ import view.moduloVentas;
  * @author maula
  */
 public class reporteFactura {
-    public static void reporte(long id){
+    public static void reporte(long id, Image imagen){
         try {
             conexion con = new conexion();
             Connection conn = con.getConexion();
@@ -34,6 +35,7 @@ public class reporteFactura {
             
             HashMap param = new HashMap();
             param.put("VENTA", id);
+            param.put("IMAGEN", imagen);
             
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             

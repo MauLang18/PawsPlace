@@ -4,6 +4,7 @@
  */
 package view;
 
+import constants.paramsConst;
 import constants.usuarioConst;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -776,7 +777,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
             System.out.println("No se actualizo la clase");
         }*/
         reporteFactura report = new reporteFactura();
-        report.reporte(Long.parseLong("1"));
+        report.reporte(Long.parseLong("1"),paramsConst.imagen);
     }//GEN-LAST:event_btnFacturarActionPerformed
 
 

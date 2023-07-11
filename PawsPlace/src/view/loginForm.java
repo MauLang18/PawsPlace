@@ -8,6 +8,7 @@ import constants.paramsConst;
 import constants.usuarioConst;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -54,27 +55,35 @@ public class loginForm extends javax.swing.JFrame {
                     BufferedImage image = null;
                     InputStream in = new ByteArrayInputStream(bi);
                     image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(128, 128, 0));
-                    lblLogo.setIcon(imgi);
-                    lblEmpresa.setText(param.getEMPRESA());
-                    setTitle(param.getEMPRESA());
-                    setLocationRelativeTo(null);
-                    setIconImage(imgi.getImage());
+                    paramsConst.guardarParametros(param.getCEDULA_JURIDICA(), param.getEMPRESA(), param.getTELEFONO(), param.getCORREO(), param.getWEB(), param.getDIRECCION(), param.getDESCRIPCION(), param.getTIPO_TIENDA(), image);
                 } catch (Exception ex) {
-                    lblLogo.setIcon(new ImageIcon(getClass().getResource("/resources/pet-shop.png")));
-                    lblEmpresa.setText("PetMarket");
-                    setTitle("PetMarket");
-                    setLocationRelativeTo(null);
-                    setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
+                    BufferedImage image = null;
+                    try {
+                        image = ImageIO.read(getClass().getResource("/resources/pet-shop.png"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    paramsConst.guardarParametros("3-101-999999", "Empresa", "(506) 9999-9999", "prueba@empresa.com", "empresa.com", "Costa Rica", "Empresa de...", "Tienda", image);
                 }
             }
-        }else {
-            lblLogo.setIcon(new ImageIcon(getClass().getResource("/resources/pet-shop.png")));
-            lblEmpresa.setText("PetMarket");
-            setTitle("PetMarket");
-            setLocationRelativeTo(null);
-            setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
+        } else {
+            BufferedImage image = null;
+            try {
+                image = ImageIO.read(getClass().getResource("/resources/pet-shop.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            paramsConst.guardarParametros("3-101-999999", "Empresa", "(506) 9999-9999", "prueba@empresa.com", "empresa.com", "Costa Rica", "Empresa de...", "Tienda", image);
         }
+
+        ImageIcon imgi = new ImageIcon(paramsConst.imagen.getScaledInstance(128, 128, 0));
+        lblLogo.setIcon(imgi);
+        lblEmpresa.setText(paramsConst.empresa);
+        setTitle(paramsConst.empresa);
+        setLocationRelativeTo(null);
+        setIconImage(paramsConst.imagen);
     }
 
     /**

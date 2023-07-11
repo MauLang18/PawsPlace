@@ -125,6 +125,7 @@ public class ProductoForm extends javax.swing.JDialog {
         cbxAreas.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         cbxAreas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Areas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
 
+        txtNombre.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
 
         btnBuscar.setBackground(new java.awt.Color(234, 234, 234));

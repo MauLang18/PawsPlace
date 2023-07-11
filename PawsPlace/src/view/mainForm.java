@@ -4,6 +4,7 @@
  */
 package view;
 
+import constants.paramsConst;
 import constants.usuarioConst;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -23,45 +24,15 @@ public class mainForm extends javax.swing.JFrame {
     /**
      * Creates new form mainForm
      */
-    parametroModel param = new parametroModel();
-    parametroDatos params = new parametroDatos();
-
-    ArrayList<parametroModel> list = new ArrayList<>();
 
     public mainForm() {
         initComponents();
-        list = params.listar_parametro(param);
-
-        if (list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
-                Object fila[] = new Object[5];
-                param = list.get(i);
-                try {
-                    byte[] bi = param.getLOGO();
-                    BufferedImage image = null;
-                    InputStream in = new ByteArrayInputStream(bi);
-                    image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(128, 128, 0));
-                    lblLogo.setIcon(imgi);
-                    lblEmpresa.setText(param.getEMPRESA());
-                    setTitle(param.getEMPRESA());
-                    setLocationRelativeTo(null);
-                    setIconImage(imgi.getImage());
-                } catch (Exception ex) {
-                    lblLogo.setIcon(new ImageIcon(getClass().getResource("/resources/pet-shop.png")));
-                    lblEmpresa.setText("PetMarket");
-                    setTitle("PetMarket");
-                    setLocationRelativeTo(null);
-                    setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
-                }
-            }
-        } else {
-            lblLogo.setIcon(new ImageIcon(getClass().getResource("/resources/pet-shop.png")));
-            lblEmpresa.setText("PetMarket");
-            setTitle("PetMarket");
-            setLocationRelativeTo(null);
-            setIconImage(new ImageIcon(getClass().getResource("/resources/pet-shop.png")).getImage());
-        }
+        ImageIcon imgi = new ImageIcon(paramsConst.imagen.getScaledInstance(128, 128, 0));
+        lblLogo.setIcon(imgi);
+        lblEmpresa.setText(paramsConst.empresa);
+        setTitle(paramsConst.empresa);
+        setLocationRelativeTo(null);
+        setIconImage(paramsConst.imagen);
 
         //Mostrar los datos del usuario
         lblUsuario.setText(usuarioConst.nombre + " " + usuarioConst.apellido);

@@ -6,8 +6,11 @@ package view;
 
 import constants.paramsConst;
 import constants.usuarioConst;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -266,14 +269,24 @@ public class ParametroForm extends javax.swing.JDialog {
         model.setDIRECCION(txtDireccion.getText());
         model.setDESCRIPCION(txtDescripcion.getText());
         model.setTIPO_TIENDA(txtTipoTienda.getText());
-        File ruta = new File(txtRuta.getText());
-        try {
-            byte[] icono = new byte[(int) ruta.length()];
-            InputStream input = new FileInputStream(ruta);
-            input.read(icono);
-            model.setLOGO(icono);
-        } catch (Exception ex) {
-            model.setLOGO(null);
+
+        if (!txtRuta.getText().equals("")) {
+            File ruta = new File(txtRuta.getText());
+            try {
+                byte[] icono = new byte[(int) ruta.length()];
+                InputStream input = new FileInputStream(ruta);
+                input.read(icono);
+                model.setLOGO(icono);
+            } catch (Exception ex) {
+                model.setLOGO(null);
+            }
+        } else {
+            try {
+                byte[] imageBytes = convertImageToByteArray(paramsConst.imagen);
+                model.setLOGO(imageBytes);
+            } catch (IOException ex) {
+                Logger.getLogger(ParametroForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         if (datos.modificar(model)) {
@@ -351,4 +364,17 @@ public class ParametroForm extends javax.swing.JDialog {
     private javax.swing.JTextField txtTipoTienda;
     private javax.swing.JTextField txtWeb;
     // End of variables declaration//GEN-END:variables
+
+    private static byte[] convertImageToByteArray(Image image) throws IOException {
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+
+        Graphics2D g2d = bufferedImage.createGraphics();
+        g2d.drawImage(image, 0, 0, null);
+        g2d.dispose();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "png", outputStream);
+
+        return outputStream.toByteArray();
+    }
 }

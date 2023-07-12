@@ -760,7 +760,7 @@ public class moduloVentas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
-        /*model5.setOPCION(0);
+        model5.setOPCION(0);
         model5.setUSUARIO(usuarioConst.nombre+"."+usuarioConst.apellido);
         model5.setPK_TBL_PMK_VENTA(Integer.parseInt(idVenta));
         model5.setFECHA(FechaLogic.obtenerFechaActual());
@@ -772,12 +772,10 @@ public class moduloVentas extends javax.swing.JInternalFrame {
             limpiar2();
             //Genera el reporte
             reporteFactura report = new reporteFactura();
-            report.reporte(Long.parseLong(idVenta));
+            report.reporte(Long.parseLong(idVenta),paramsConst.imagen);
         } else {
             System.out.println("No se actualizo la clase");
-        }*/
-        reporteFactura report = new reporteFactura();
-        report.reporte(Long.parseLong("1"),paramsConst.imagen);
+        }
     }//GEN-LAST:event_btnFacturarActionPerformed
 
 

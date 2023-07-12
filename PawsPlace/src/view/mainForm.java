@@ -6,14 +6,8 @@ package view;
 
 import constants.paramsConst;
 import constants.usuarioConst;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import model.parametroDatos;
-import model.parametroModel;
+import javax.swing.JComponent;
 
 /**
  *
@@ -386,6 +380,13 @@ public class mainForm extends javax.swing.JFrame {
         fm.setLocationRelativeTo(null);
         //Mostramos el modal
         fm.setVisible(true);
+        
+        ImageIcon imgi = new ImageIcon(paramsConst.imagen.getScaledInstance(128, 128, 0));
+        lblLogo.setIcon(imgi);
+        lblEmpresa.setText(paramsConst.empresa);
+        setTitle(paramsConst.empresa);
+        setLocationRelativeTo(null);
+        setIconImage(paramsConst.imagen);
     }//GEN-LAST:event_btnParametrosActionPerformed
 
     /**

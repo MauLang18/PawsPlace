@@ -6,13 +6,8 @@ package view;
 
 import constants.usuarioConst;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.categoriaDatos;
-import model.categoriaModel;
-import model.inventarioDatos;
-import model.inventarioModel;
 import model.rolDatos;
 import model.rolModel;
 import model.usuarioDatos;
@@ -49,9 +44,8 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
 
     public moduloControUsuario() {
         initComponents();
-        setTitle("Control de Usuario");
         //Asignando valores a los atributos
-        model.setOPCION(0);
+        model.setOPCION(1);
         model.setPK_TBL_PMK_CONTROL_USUARIO(0);
         model.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
         model.setCEDULA("");
@@ -65,10 +59,10 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         //Añadiendo las columnas a la tabla
         tableModel.addColumn("ID");
         tableModel.addColumn("CEDULA");
+        tableModel.addColumn("CONTRASEÑA");
         tableModel.addColumn("NOMBRE");
         tableModel.addColumn("APELLIDO1");
         tableModel.addColumn("APELLIDO2");
-        tableModel.addColumn("CONTRASEÑA");
         tableModel.addColumn("ROL");
 
         //Leyendo los datos por medio de un for each
@@ -94,7 +88,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         txtApellido2 = new javax.swing.JTextField();
         txtApellido1 = new javax.swing.JTextField();
-        txtContraseña = new javax.swing.JTextField();
+        txtContrasena = new javax.swing.JTextField();
         txtCedula = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -116,19 +110,19 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(198, 216, 211));
 
         txtNombre.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+        txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
 
         txtApellido2.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        txtApellido2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Apellido 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+        txtApellido2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Apellido 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
 
         txtApellido1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        txtApellido1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Apellido 1", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+        txtApellido1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Apellido 1", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
 
-        txtContraseña.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        txtContraseña.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+        txtContrasena.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        txtContrasena.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
 
         txtCedula.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        txtCedula.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Cedula", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+        txtCedula.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cedula", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
 
         btnAgregar.setBackground(new java.awt.Color(234, 234, 234));
         btnAgregar.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
@@ -191,7 +185,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
 
         txtRol.setEditable(false);
         txtRol.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        txtRol.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Rol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+        txtRol.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
         txtRol.setPreferredSize(new java.awt.Dimension(77, 39));
         txtRol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -206,27 +200,26 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtRol, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtApellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addComponent(btnAgregar)
                         .addGap(33, 33, 33)
                         .addComponent(btnModificar)
                         .addGap(40, 40, 40)
                         .addComponent(btnEliminar)
-                        .addGap(28, 28, 28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar)
-                        .addGap(25, 25, 25))))
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,7 +235,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -251,7 +244,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
                     .addComponent(btnEliminar)
                     .addComponent(btnModificar)
                     .addComponent(btnAgregar))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -259,16 +252,16 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(44, 44, 44))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -290,7 +283,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         model.setNOMBRE(txtNombre.getText().toUpperCase());
         model.setAPELLIDO1(txtApellido1.getText().toUpperCase());
         model.setAPELLIDO2(txtApellido2.getText());
-        model.setCONTRASENA(txtContraseña.getText());
+        model.setCONTRASENA(txtContrasena.getText());
         model.setID_ROLL(Integer.parseInt(roles.get(0).toString()));
 
         //Condicional para saber si se hizo la transaccion
@@ -298,7 +291,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Ingresado con exito");
             limpiar();
 
-            model1.setOPCION(0);
+            model1.setOPCION(1);
             model1.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
             model1.setPK_TBL_PMK_CONTROL_USUARIO(0);
             model1.setCEDULA("");
@@ -346,7 +339,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         model.setNOMBRE(txtNombre.getText().toUpperCase());
         model.setAPELLIDO1(txtApellido1.getText().toUpperCase());
         model.setAPELLIDO2(txtApellido2.getText());
-        model.setCONTRASENA(txtContraseña.getText());
+        model.setCONTRASENA(txtContrasena.getText());
         model.setID_ROLL(Integer.parseInt(data1.get(0)[0].toString()));
 
         //Condicional para saber si se hizo la transaccion
@@ -354,7 +347,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Modificado con exito");
             limpiar();
 
-            model1.setOPCION(0);
+            model1.setOPCION(1);
             model1.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
             model1.setPK_TBL_PMK_CONTROL_USUARIO(0);
             model1.setCEDULA("");
@@ -395,15 +388,15 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         model.setNOMBRE(txtNombre.getText().toUpperCase());
         model.setAPELLIDO1(txtApellido1.getText().toUpperCase());
         model.setAPELLIDO2(txtApellido2.getText());
-        model.setCONTRASENA(txtContraseña.getText());
-        model.setID_ROLL(Integer.parseInt(roles.get(0).toString()));
+        model.setCONTRASENA(txtContrasena.getText());
+        model.setID_ROLL(Integer.parseInt("0"));
 
         //Condicional para saber si se hizo la transaccion
         if (datos.eliminar(model)) {
             JOptionPane.showMessageDialog(null, "Eliminado con exito");
             limpiar();
 
-            model1.setOPCION(0);
+            model1.setOPCION(1);
             model1.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
             model1.setPK_TBL_PMK_CONTROL_USUARIO(0);
             model1.setCEDULA("");
@@ -429,7 +422,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        model.setOPCION(0);
+        model.setOPCION(1);
         model.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
 
         //JOptionPane para saber el tipo de dato que desea buscar
@@ -442,9 +435,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         switch (buscar.toString()) {
             case "Id":
                 //Atributos
-
                 model.setPK_TBL_PMK_CONTROL_USUARIO(Integer.parseInt(valor));
-
                 model.setCEDULA("");
                 model.setNOMBRE("");
                 model.setCONTRASENA("");
@@ -465,7 +456,6 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
             case "Cedula":
                 //Atributos
                 model.setPK_TBL_PMK_CONTROL_USUARIO(0);
-
                 model.setCEDULA(valor);
                 model.setNOMBRE("");
                 model.setCONTRASENA("");
@@ -486,7 +476,6 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
             case "Nombre":
                 //Atributos
                 model.setPK_TBL_PMK_CONTROL_USUARIO(0);
-
                 model.setCEDULA("");
                 model.setNOMBRE(valor);
                 model.setCONTRASENA("");
@@ -507,7 +496,6 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
             case "Apellido1":
                 //Atributos
                 model.setPK_TBL_PMK_CONTROL_USUARIO(0);
-
                 model.setCEDULA("");
                 model.setNOMBRE("");
                 model.setCONTRASENA("");
@@ -546,10 +534,10 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
             //Agregan los datos a los textfield
             Id = datosFila.get(0).toString();
             txtCedula.setText(datosFila.get(1).toString());
-            txtNombre.setText(datosFila.get(2).toString());
-            txtApellido1.setText(datosFila.get(3).toString());
-            txtApellido2.setText(datosFila.get(4).toString());
-            txtContraseña.setText(datosFila.get(5).toString());
+            txtContrasena.setText(datosFila.get(2).toString());
+            txtNombre.setText(datosFila.get(3).toString());
+            txtApellido1.setText(datosFila.get(4).toString());
+            txtApellido2.setText(datosFila.get(5).toString());
             txtRol.setText(datosFila.get(6).toString());
         }
     }//GEN-LAST:event_tblUsuarioMouseClicked
@@ -585,7 +573,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtApellido1;
     private javax.swing.JTextField txtApellido2;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRol;
     // End of variables declaration//GEN-END:variables
@@ -595,7 +583,7 @@ private void limpiar() {
         txtNombre.setText("");
         txtApellido1.setText("");
         txtApellido2.setText("");
-        txtContraseña.setText("");
+        txtContrasena.setText("");
         txtRol.setText("");
     }
 }

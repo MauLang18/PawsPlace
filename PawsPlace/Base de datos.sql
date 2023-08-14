@@ -856,6 +856,24 @@ BEGIN
 						TIU.PK_TBL_PMK_CONTROL_USUARIO = @P_PK_TBL_PMK_CONTROL_USUARIO
 						OR 
 						@P_PK_TBL_PMK_CONTROL_USUARIO = 0
+					)
+					AND
+					(
+						TIU.NOMBRE = @P_NOMBRE
+						OR 
+						@P_NOMBRE = ''
+					)
+					AND
+					(
+						TIU.APELLIDO1 = @P_APELLIDO1
+						OR 
+						@P_APELLIDO1 = ''
+					)
+					AND
+					(
+						TIU.CEDULA = @P_CEDULA
+						OR 
+						@P_CEDULA = ''
 					);
 				END;
 				IF (@P_OPCION = 2)

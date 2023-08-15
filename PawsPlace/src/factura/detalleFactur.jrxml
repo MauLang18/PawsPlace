@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detalleFactura" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff4319ca-ce28-4ddb-a0f9-456d18c7f091">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="VENTA" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[EXEC PAWPLACE.PA_CON_TBL_PMK_CARRITO 2,'MAURICE.LANG',0,0,$P{VENTA},0,0,0.0]]>
+	</queryString>
+	<field name="PK_TBL_PMK_CARRITO" class="java.lang.Long"/>
+	<field name="ID_VENTA" class="java.lang.Long"/>
+	<field name="CODIGO" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="PRECIO" class="java.math.BigDecimal"/>
+	<field name="CANTIDAD" class="java.lang.Integer"/>
+	<field name="SUBTOTAL" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="68" height="20" uuid="4a1392ca-7006-43d7-93b0-cddae65623fb"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="68" y="0" width="326" height="20" uuid="46ef13cc-eb4e-4495-b153-617e81df9579"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="394" y="0" width="80" height="20" uuid="58f733c0-ada4-447a-89c7-7d7581fba80a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="474" y="0" width="81" height="20" uuid="76a0a43e-550c-4b28-936b-aaf11f5a3381"/>
+			</rectangle>
+			<textField>
+				<reportElement x="68" y="0" width="326" height="20" uuid="704a1ead-7df9-4797-adf0-2ab351d32471"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="68" height="20" uuid="3d261c1a-ca52-47d8-bb42-270d0d06865e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="0" width="81" height="20" uuid="b5ade754-55e3-4cd6-b123-be77c032dfec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SUBTOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="0" width="80" height="20" uuid="e577b8ba-40f5-476f-a0eb-028c50b30b4f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PRECIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

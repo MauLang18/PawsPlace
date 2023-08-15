@@ -4,6 +4,13 @@
  */
 package view;
 
+import constants.usuarioConst;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.clienteDatos;
+import model.clienteModel;
+
 /**
  *
  * @author mlang
@@ -13,8 +20,52 @@ public class moduloCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form moduloCliente
      */
+     //ArrayList para almacenar los datos de la consulta
+    ArrayList<Object[]> data = new ArrayList<>();
+
+    //Creando instancias de modelo y datos
+    clienteModel model = new clienteModel();
+    clienteModel model1 = new clienteModel();
+    clienteDatos datos = new clienteDatos();
+   
+
+    //Creando el modelo de la tabla
+    DefaultTableModel tableModel = new DefaultTableModel();
+
+    //Variable para guardar el Id
+    private String Id = "";
+
     public moduloCliente() {
         initComponents();
+         //Asignando valores a los atributos
+        model.setOPCION(0);
+        model.setPK_TBL_PMK_CLIENTE(0);
+        model.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
+        model.setCEDULA("");
+        model.setNOMBRE("");
+        model.setAPELLIDO1("");
+
+        //Guardando los datos en la arraylist
+        data = datos.obtenerDatos(model);
+
+        //Añadiendo las columnas a la tabla
+        tableModel.addColumn("ID");
+        tableModel.addColumn("CEDULA");
+        tableModel.addColumn("NOMBRE");
+        tableModel.addColumn("APELLIDO1");
+        tableModel.addColumn("APELLIDO2");
+        tableModel.addColumn("CORREO");
+        tableModel.addColumn("TELEFONO");
+        
+
+        //Leyendo los datos por medio de un for each
+        for (Object[] fila : data) {
+            tableModel.addRow(fila);
+        }
+
+        //Agregando los datos a la tabla
+        tblUsuario.setModel(tableModel);
+
     }
 
     /**
@@ -27,6 +78,18 @@ public class moduloCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtCEDULA = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido1 = new javax.swing.JTextField();
+        txtApellido2 = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblUsuario = new javax.swing.JTable();
+        btnAgregar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -37,15 +100,147 @@ public class moduloCliente extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(198, 216, 211));
 
+        txtCEDULA.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        txtCEDULA.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEDULA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+        txtCEDULA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCEDULAActionPerformed(evt);
+            }
+        });
+
+        txtNombre.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+
+        txtApellido1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        txtApellido1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Apellido 1", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+
+        txtApellido2.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        txtApellido2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Apellido 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+
+        txtCorreo.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        txtCorreo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Correo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
+
+        txtTelefono.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        txtTelefono.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefono", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans", 1, 14))); // NOI18N
+
+        tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblUsuario.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuarioMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblUsuario);
+
+        btnAgregar.setBackground(new java.awt.Color(234, 234, 234));
+        btnAgregar.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/plus.png"))); // NOI18N
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnModificar.setBackground(new java.awt.Color(234, 234, 234));
+        btnModificar.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pencil.png"))); // NOI18N
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setBackground(new java.awt.Color(234, 234, 234));
+        btnEliminar.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/trash.png"))); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnBuscar.setBackground(new java.awt.Color(234, 234, 234));
+        btnBuscar.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 843, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCEDULA, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAgregar)
+                                .addGap(35, 35, 35)
+                                .addComponent(btnModificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscar))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 589, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAgregar)
+                            .addComponent(btnModificar)
+                            .addComponent(btnEliminar)
+                            .addComponent(btnBuscar)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtCEDULA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(txtApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(txtApellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -62,8 +257,311 @@ public class moduloCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtCEDULAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCEDULAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCEDULAActionPerformed
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void tblUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioMouseClicked
+        //Obtiene la posicion donde se hizo el click
+        int filaSeleccionada = tblUsuario.getSelectedRow();
+        //Se realiza una condicional para determinar si la fila seleccionada es mayor o igual a 0
+        if (filaSeleccionada >= 0) {
+            //Se crea una instacia de ArrayList
+            ArrayList<Object> datosFila = new ArrayList<>();
+            //Se empieza a recorrer la tabla para obtener los valores de la fila seleccionada
+            for (int i = 0; i < tableModel.getColumnCount(); i++) {
+                datosFila.add(tableModel.getValueAt(filaSeleccionada, i));
+            }
+
+            //Agregan los datos a los textfield
+            Id = datosFila.get(0).toString();
+            txtCEDULA.setText(datosFila.get(1).toString());
+            txtNombre.setText(datosFila.get(2).toString());
+            txtApellido1.setText(datosFila.get(3).toString());
+            txtApellido2.setText(datosFila.get(4).toString());
+            txtCorreo.setText(datosFila.get(5).toString());
+            txtTelefono.setText(datosFila.get(6).toString());
+        }
+    }//GEN-LAST:event_tblUsuarioMouseClicked
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        //Atributos
+        model.setOPCION(0);
+        model.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
+
+        //Condicional para validar si el campo id tiene un valor
+        if (!Id.equals("")) {
+            model.setPK_TBL_PMK_CLIENTE(Integer.parseInt(Id));
+        } else {
+            model.setPK_TBL_PMK_CLIENTE(0);
+        }
+
+        model.setCEDULA(txtCEDULA.getText().toUpperCase());
+        model.setNOMBRE(txtNombre.getText().toUpperCase());
+        model.setAPELLIDO1(txtApellido1.getText().toUpperCase());
+        model.setAPELLIDO2(txtApellido2.getText());
+        model.setCORREO(txtCorreo.getText());
+        model.setTELEFONO(txtTelefono.getText());
+        //Condicional para saber si se hizo la transaccion
+        if (datos.ingresar(model)) {
+            JOptionPane.showMessageDialog(null, "Ingresado con exito");
+            limpiar();
+
+            model1.setOPCION(0);
+            model1.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
+            model1.setPK_TBL_PMK_CLIENTE(0);
+            model1.setCEDULA("");
+            model1.setNOMBRE("");
+            model1.setAPELLIDO1("");
+           
+
+            data = null;
+            tableModel.setRowCount(0);
+
+            data = datos.obtenerDatos(model1);
+
+            for (Object[] fila : data) {
+                tableModel.addRow(fila);
+            }
+
+            //Agregando los datos a la tabla
+            tblUsuario.setModel(tableModel);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al ingresar");
+            limpiar();
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        //Atributos
+        model.setOPCION(0);
+        model.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
+
+        //Condicional para validar si el campo id tiene un valor
+        if (!Id.equals("")) {
+            model.setPK_TBL_PMK_CLIENTE(Integer.parseInt(Id));
+        } else {
+            model.setPK_TBL_PMK_CLIENTE(0);
+        }
+
+       
+
+        model.setCEDULA(txtCEDULA.getText().toUpperCase());
+        model.setNOMBRE(txtNombre.getText().toUpperCase());
+        model.setAPELLIDO1(txtApellido1.getText().toUpperCase());
+        model.setAPELLIDO2(txtApellido2.getText());
+        model.setCORREO(txtCorreo.getText());
+        model.setTELEFONO(txtTelefono.getText());
+
+        //Condicional para saber si se hizo la transaccion
+        if (datos.modificar(model)) {
+            JOptionPane.showMessageDialog(null, "Modificado con exito");
+            limpiar();
+
+            model1.setOPCION(0);
+            model1.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
+            model1.setPK_TBL_PMK_CLIENTE(0);
+            model1.setCEDULA("");
+            model1.setNOMBRE("");
+            model1.setAPELLIDO1("");
+           
+
+            data = null;
+            tableModel.setRowCount(0);
+
+            data = datos.obtenerDatos(model1);
+
+            for (Object[] fila : data) {
+                tableModel.addRow(fila);
+            }
+
+            //Agregando los datos a la tabla
+            tblUsuario.setModel(tableModel);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al modificar");
+            limpiar();
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        //Atributos
+        model.setOPCION(1);
+        model.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
+
+        //Condicional para validar si el campo id tiene un valor
+        if (!Id.equals("")) {
+            model.setPK_TBL_PMK_CLIENTE(Integer.parseInt(Id));
+        } else {
+            model.setPK_TBL_PMK_CLIENTE(0);
+        }
+
+        model.setCEDULA(txtCEDULA.getText().toUpperCase());
+        model.setNOMBRE(txtNombre.getText().toUpperCase());
+        model.setAPELLIDO1(txtApellido1.getText().toUpperCase());
+        model.setAPELLIDO2(txtApellido2.getText());
+        model.setCORREO(txtCorreo.getText());
+        model.setTELEFONO(txtTelefono.getText());
+
+        //Condicional para saber si se hizo la transaccion
+        if (datos.eliminar(model)) {
+            JOptionPane.showMessageDialog(null, "Eliminado con exito");
+            limpiar();
+
+            model1.setOPCION(0);
+            model1.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
+            model1.setPK_TBL_PMK_CLIENTE(0);
+            model1.setCEDULA("");
+            model1.setNOMBRE("");
+            model1.setAPELLIDO1("");
+           
+
+            data = null;
+            tableModel.setRowCount(0);
+
+            data = datos.obtenerDatos(model1);
+
+            for (Object[] fila : data) {
+                tableModel.addRow(fila);
+            }
+
+            //Agregando los datos a la tabla
+            tblUsuario.setModel(tableModel);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al eliminar");
+            limpiar();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        model.setOPCION(0);
+        model.setUSUARIO(usuarioConst.nombre + "." + usuarioConst.apellido);
+
+        //JOptionPane para saber el tipo de dato que desea buscar
+        Object buscar = JOptionPane.showInputDialog(null, "Seleccione una Opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Seleccione", "Id", "Cedula", "Nombre", "Apellido1"}, "Seleccione");
+
+        //Variable para almacenar el dato
+        String valor = JOptionPane.showInputDialog("Ingrese " + buscar + " para buscar: ");
+
+        //Condicional para buscar por el tipo de dato elegido
+        switch (buscar.toString()) {
+            case "Id":
+            //Atributos
+
+            model.setPK_TBL_PMK_CLIENTE(Integer.parseInt(valor));
+
+            model.setCEDULA("");
+            model.setNOMBRE("");
+           
+            model.setAPELLIDO1("");
+
+            data = null;
+            tableModel.setRowCount(0);
+
+            data = datos.obtenerDatos(model);
+
+            for (Object[] fila : data) {
+                tableModel.addRow(fila);
+            }
+
+            //Agregando los datos a la tabla
+            tblUsuario.setModel(tableModel);
+            break;
+            case "Cedula":
+            //Atributos
+            model.setPK_TBL_PMK_CLIENTE(0);
+
+            model.setCEDULA(valor);
+            model.setNOMBRE("");
+         
+            model.setAPELLIDO1("");
+
+            data = null;
+            tableModel.setRowCount(0);
+
+            data = datos.obtenerDatos(model);
+
+            for (Object[] fila : data) {
+                tableModel.addRow(fila);
+            }
+
+            //Agregando los datos a la tabla
+            tblUsuario.setModel(tableModel);
+            break;
+            case "Nombre":
+            //Atributos
+            model.setPK_TBL_PMK_CLIENTE(0);
+
+            model.setCEDULA("");
+            model.setNOMBRE(valor);
+           
+            model.setAPELLIDO1("");
+
+            data = null;
+            tableModel.setRowCount(0);
+
+            data = datos.obtenerDatos(model);
+
+            for (Object[] fila : data) {
+                tableModel.addRow(fila);
+            }
+
+            //Agregando los datos a la tabla
+            tblUsuario.setModel(tableModel);
+            break;
+            case "Apellido1":
+            //Atributos
+            model.setPK_TBL_PMK_CLIENTE(0);
+
+            model.setCEDULA("");
+            model.setNOMBRE("");
+          
+            model.setAPELLIDO1(valor);
+
+            data = null;
+            tableModel.setRowCount(0);
+
+            data = datos.obtenerDatos(model);
+
+            for (Object[] fila : data) {
+                tableModel.addRow(fila);
+            }
+
+            //Agregando los datos a la tabla
+            tblUsuario.setModel(tableModel);
+            break;
+
+            default:
+            JOptionPane.showMessageDialog(null, "No es una opcion valida");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblUsuario;
+    private javax.swing.JTextField txtApellido1;
+    private javax.swing.JTextField txtApellido2;
+    private javax.swing.JTextField txtCEDULA;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
-}
+
+private void limpiar() {
+        Id = "";
+        txtCEDULA.setText("");
+        txtNombre.setText("");
+        txtApellido1.setText("");
+        txtApellido2.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+    }}

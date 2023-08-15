@@ -282,7 +282,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         model.setCEDULA(txtCedula.getText().toUpperCase());
         model.setNOMBRE(txtNombre.getText().toUpperCase());
         model.setAPELLIDO1(txtApellido1.getText().toUpperCase());
-        model.setAPELLIDO2(txtApellido2.getText());
+        model.setAPELLIDO2(txtApellido2.getText().toUpperCase());
         model.setCONTRASENA(txtContrasena.getText());
         model.setID_ROLL(Integer.parseInt(roles.get(0).toString()));
 
@@ -338,7 +338,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         model.setCEDULA(txtCedula.getText().toUpperCase());
         model.setNOMBRE(txtNombre.getText().toUpperCase());
         model.setAPELLIDO1(txtApellido1.getText().toUpperCase());
-        model.setAPELLIDO2(txtApellido2.getText());
+        model.setAPELLIDO2(txtApellido2.getText().toUpperCase());
         model.setCONTRASENA(txtContrasena.getText());
         model.setID_ROLL(Integer.parseInt(data1.get(0)[0].toString()));
 
@@ -387,7 +387,7 @@ public class moduloControUsuario extends javax.swing.JInternalFrame {
         model.setCEDULA(txtCedula.getText().toUpperCase());
         model.setNOMBRE(txtNombre.getText().toUpperCase());
         model.setAPELLIDO1(txtApellido1.getText().toUpperCase());
-        model.setAPELLIDO2(txtApellido2.getText());
+        model.setAPELLIDO2(txtApellido2.getText().toUpperCase());
         model.setCONTRASENA(txtContrasena.getText());
         model.setID_ROLL(Integer.parseInt("0"));
 
